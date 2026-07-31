@@ -1,0 +1,56 @@
+- generic [active] [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - navigation "Primary navigation" [ref=f5e3]:
+      - link "Knowledge Notes" [ref=f5e4] [cursor=pointer]:
+        - /url: /knowledge-site-template/
+      - generic [ref=f5e7]:
+        - link "GitHub" [ref=f5e8] [cursor=pointer]:
+          - /url: https://github.com/ljxpython/knowledge-site-template
+        - button "Toggle color theme" [ref=f5e9] [cursor=pointer]: ◐
+  - main [ref=f5e10]:
+    - generic [ref=f5e11]:
+      - paragraph [ref=f5e12]: Markdown-first knowledge site
+      - heading "Knowledge Notes" [level=1] [ref=f5e13]
+      - paragraph [ref=f5e14]: A focused, readable site for teaching and documenting ideas.
+      - generic [ref=f5e15]:
+        - link "Explore notes" [ref=f5e16] [cursor=pointer]:
+          - /url: "#notes"
+          - text: Explore notes
+          - generic [ref=f5e17]: ↓
+        - link "Use the template" [ref=f5e18] [cursor=pointer]:
+          - /url: https://github.com/ljxpython/knowledge-site-template
+          - text: Use the template
+          - generic [ref=f5e19]: ↗
+      - generic [ref=f5e20]:
+        - code [ref=f5e21]: npm run dev
+        - button "Copy command" [ref=f5e22] [cursor=pointer]: Copy
+    - generic [ref=f5e23]:
+      - generic [ref=f5e24]:
+        - generic [ref=f5e25]:
+          - generic [ref=f5e26]:
+            - paragraph [ref=f5e27]: Collection
+            - heading "foundations" [level=2] [ref=f5e28]
+          - generic [ref=f5e29]: 1 notes
+        - link "01 A Small System for Explaining Complex Things How to structure a knowledge site so readers can learn without fighting the interface." [ref=f5e31] [cursor=pointer]:
+          - /url: /knowledge-site-template/docs/welcome/
+          - generic [ref=f5e32]: "01"
+          - generic [ref=f5e33]:
+            - heading "A Small System for Explaining Complex Things" [level=3] [ref=f5e34]
+            - paragraph [ref=f5e35]: How to structure a knowledge site so readers can learn without fighting the interface.
+          - generic [ref=f5e36]: ↗
+      - generic [ref=f5e37]:
+        - generic [ref=f5e38]:
+          - generic [ref=f5e39]:
+            - paragraph [ref=f5e40]: Collection
+            - heading "practice" [level=2] [ref=f5e41]
+          - generic [ref=f5e42]: 1 notes
+        - link "02 Write One Lesson, Not a Wall of Text A practical Markdown contract for readable explanations, code, and follow-up action." [ref=f5e44] [cursor=pointer]:
+          - /url: /knowledge-site-template/docs/writing-a-lesson/
+          - generic [ref=f5e45]: "02"
+          - generic [ref=f5e46]:
+            - heading "Write One Lesson, Not a Wall of Text" [level=3] [ref=f5e47]
+            - paragraph [ref=f5e48]: A practical Markdown contract for readable explanations, code, and follow-up action.
+          - generic [ref=f5e49]: ↗
+  - contentinfo [ref=f5e50]:
+    - generic [ref=f5e51]: Knowledge Notes/Built for focused learning.
+    - generic [ref=f5e52]: MIT License

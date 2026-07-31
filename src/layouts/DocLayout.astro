@@ -1,0 +1,56 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Prose from '../components/Prose.astro';
+import ContentsRail from '../components/ContentsRail.astro';
+import DocNav from '../components/DocNav.astro';
+import ResourceLinks from '../components/ResourceLinks.astro';
+import { site, withBase } from '../lib/site';
+
+interface Resource {
+  label: string;
+  url: string;
+}
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  section: string;
+  order: number;
+  resources: Resource[];
+  headings: Array<{ depth: number; slug: string; text: string }>;
+  prev: { id: string; title: string; section: string } | null;
+  next: { id: string; title: string; section: string } | null;
+}
+
+const { id, title, description, section, order, resources, headings, prev, next } = Astro.props;
+const editUrl = `${site.repositoryUrl}/blob/main/content/${id}.md`;
+---
+
+<BaseLayout title={`${title} | ${site.title}`} description={description}>
+  <Header />
+  <main class="doc-shell">
+    <article class="doc">
+      <ContentsRail headings={headings} />
+      <header class="doc-header">
+        <div class="eyebrow">
+          <span>{section}</span>
+          <span>Note {String(order).padStart(2, '0')}</span>
+        </div>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <div class="doc-meta">
+          <a href={withBase('/')} class="quiet-link">All notes</a>
+          <a href={editUrl} target="_blank" rel="noopener" class="quiet-link">{site.navigation.sourceLabel}</a>
+        </div>
+      </header>
+
+      <Prose><slot /></Prose>
+      <ResourceLinks resources={resources} />
+      <DocNav prev={prev} next={next} />
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

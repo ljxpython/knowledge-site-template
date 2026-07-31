@@ -1,0 +1,36 @@
+{
+  "sections": [
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "description": "Start with the mental model and the smallest useful practice."
+    },
+    {
+      "id": "practice",
+      "title": "Practice",
+      "description": "Turn the ideas into repeatable work."
+    }
+  ],
+  "documents": {
+    "welcome": {
+      "title": "A Small System for Explaining Complex Things",
+      "description": "How to structure a knowledge site so readers can learn without fighting the interface.",
+      "section": "foundations",
+      "order": 1,
+      "published": true,
+      "resources": [
+        {
+          "label": "Project repository",
+          "url": "https://github.com/ljxpython/knowledge-site-template"
+        }
+      ]
+    },
+    "writing-a-lesson": {
+      "title": "Write One Lesson, Not a Wall of Text",
+      "description": "A practical Markdown contract for readable explanations, code, and follow-up action.",
+      "section": "practice",
+      "order": 2,
+      "published": true
+    }
+  }
+}

@@ -1,0 +1,71 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - navigation "Primary navigation" [ref=f2e3]:
+      - link "Knowledge Notes" [ref=f2e4] [cursor=pointer]:
+        - /url: /knowledge-site-template/
+      - generic [ref=f2e7]:
+        - link "GitHub" [ref=f2e8] [cursor=pointer]:
+          - /url: https://github.com/ljxpython/knowledge-site-template
+        - button "Toggle color theme" [ref=f2e9] [cursor=pointer]: ◐
+  - main [ref=f2e10]:
+    - article [ref=f2e11]:
+      - navigation "On this page" [ref=f2e12]:
+        - paragraph [ref=f2e13]: On this page
+        - list [ref=f2e14]:
+          - listitem [ref=f2e15]:
+            - link "The promise" [ref=f2e16] [cursor=pointer]:
+              - /url: "#the-promise"
+          - listitem [ref=f2e17]:
+            - link "The input contract" [ref=f2e18] [cursor=pointer]:
+              - /url: "#the-input-contract"
+          - listitem [ref=f2e19]:
+            - link "The reader’s path" [ref=f2e20] [cursor=pointer]:
+              - /url: "#the-readers-path"
+      - generic [ref=f2e21]:
+        - generic [ref=f2e22]:
+          - generic [ref=f2e23]: foundations
+          - generic [ref=f2e24]: Note 01
+        - heading "A Small System for Explaining Complex Things" [level=1] [ref=f2e25]
+        - paragraph [ref=f2e26]: How to structure a knowledge site so readers can learn without fighting the interface.
+        - generic [ref=f2e27]:
+          - link "All notes" [ref=f2e28] [cursor=pointer]:
+            - /url: /knowledge-site-template/
+          - link "View source" [ref=f2e29] [cursor=pointer]:
+            - /url: https://github.com/ljxpython/knowledge-site-template/blob/main/content/welcome.md
+      - generic [ref=f2e30]:
+        - heading "The promise" [level=2] [ref=f2e31]
+        - paragraph [ref=f2e32]: A knowledge site works when the author can focus on the explanation and the reader can focus on the idea. The page structure, type scale, navigation, and deployment should be solved once by the template.
+        - blockquote [ref=f2e33]:
+          - paragraph [ref=f2e34]: The template is opinionated on structure, not on subject matter.
+        - heading "The input contract" [level=2] [ref=f2e35]
+        - paragraph [ref=f2e36]:
+          - text: Each lesson is a Markdown file. Its title, section, order, and publication state live in
+          - code [ref=f2e37]: "`content.manifest.json`"
+          - text: . The build merges that metadata into generated content collections.
+        - code [ref=f2e39]:
+          - generic [ref=f2e40]: content/
+          - generic [ref=f2e41]: welcome.md
+          - generic [ref=f2e42]: writing-a-lesson.md
+        - paragraph [ref=f2e43]: This keeps the page code clean. Adding a lesson does not require editing an Astro component.
+        - heading "The reader’s path" [level=2] [ref=f2e44]
+        - list [ref=f2e45]:
+          - listitem [ref=f2e46]: Start on the grouped index.
+          - listitem [ref=f2e47]: Open one focused lesson.
+          - listitem [ref=f2e48]: Use the contents rail for long pages.
+          - listitem [ref=f2e49]: Continue with the next lesson.
+        - paragraph [ref=f2e50]: That is enough for a first version. Search, accounts, and a CMS are separate problems.
+      - generic [ref=f2e51]:
+        - heading "Resources" [level=2] [ref=f2e52]
+        - list [ref=f2e53]:
+          - listitem [ref=f2e54]:
+            - link "Project repository" [ref=f2e55] [cursor=pointer]:
+              - /url: https://github.com/ljxpython/knowledge-site-template
+              - text: Project repository↗
+      - navigation "Document navigation" [ref=f2e56]:
+        - link "Next / practice Write One Lesson, Not a Wall of Text" [ref=f2e58] [cursor=pointer]:
+          - /url: /knowledge-site-template/docs/writing-a-lesson/
+          - generic [ref=f2e59]: Next / practice
+          - generic [ref=f2e60]: Write One Lesson, Not a Wall of Text
+  - contentinfo [ref=f2e61]:
+    - generic [ref=f2e62]: Knowledge Notes / Built for focused learning.
+    - generic [ref=f2e63]: MIT License

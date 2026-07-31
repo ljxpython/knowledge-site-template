@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import DocCard from '../components/DocCard.astro';
+import CopyButton from '../components/CopyButton.astro';
+import { site } from '../lib/site';
+
+const docs = (await getCollection('docs', ({ data }) => data.published))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const sections = [...new Set(docs.map((doc) => doc.data.section))];
+---
+
+<BaseLayout>
+  <Header />
+  <main>
+    <section class="hero">
+      <p class="hero-kicker">Markdown-first knowledge site</p>
+      <h1>{site.title}</h1>
+      <p class="hero-copy">{site.description}</p>
+      <div class="hero-actions">
+        <a class="button-primary" href="#notes">Explore notes <span aria-hidden="true">↓</span></a>
+        <a class="button-secondary" href={site.links.github} target="_blank" rel="noopener">Use the template <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="quick-start">
+        <code>npm run dev</code>
+        <CopyButton value="npm run dev" />
+      </div>
+    </section>
+
+    <section id="notes" class="notes">
+      {sections.map((section) => (
+        <div class="section-block">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Collection</p>
+              <h2>{section}</h2>
+            </div>
+            <span>{docs.filter((doc) => doc.data.section === section).length} notes</span>
+          </div>
+          <div class="card-grid">
+            {docs.filter((doc) => doc.data.section === section).map((doc) => (
+              <DocCard id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
