@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown to Knowledge Site"
+  short_description: "Convert Markdown docs into a knowledge site"
+  default_prompt: "Use $markdown-to-knowledge-site to turn a Markdown docs folder into a template-backed knowledge site."

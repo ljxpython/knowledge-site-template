@@ -14,6 +14,8 @@ content.manifest.json  Section order and document metadata
 content/*.md            Markdown lesson bodies
 public/imgs/            Images referenced as /imgs/file.png
 public/pdfs/            Optional PDFs referenced as /pdfs/file.pdf
+.codex/skills/markdown-to-knowledge-site/
+                        Repo-local Codex skill source for Markdown-to-site imports
 ```
 
 The reusable UI lives under `src/`. You should not need to edit it to add a lesson.
@@ -63,6 +65,21 @@ Use absolute public paths in Markdown:
 ```
 
 `npm run assets:check` rejects missing local `/imgs/` and `/pdfs/` references.
+
+## Example Code
+
+Keep example code in the lesson body as fenced Markdown blocks.
+
+For standalone sample files, add a `resources` entry in `content.manifest.json` and point it at a GitHub blob URL or another absolute URL:
+
+```json
+{
+  "label": "Example: `01_real_model_agent.py`",
+  "url": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/01_real_model_agent.py"
+}
+```
+
+For files you want to serve from the site itself, put them under `public/` and link them with an absolute path.
 
 ## GitHub Pages
 
