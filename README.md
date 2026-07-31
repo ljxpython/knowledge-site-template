@@ -2,6 +2,10 @@
 
 A Markdown-first Astro template for courses, technical notes, and explainers. Write content and a little configuration; the site provides the reading layout, navigation, theme switcher, and GitHub Pages deployment.
 
+Repository: https://github.com/ljxpython/knowledge-site-template
+
+This repository is configured as a GitHub Template Repository. Use **Use this template** on GitHub to start a new knowledge site.
+
 ## What You Edit
 
 ```text
