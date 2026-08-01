@@ -1,21 +1,29 @@
 {
-  "sections": [
+  "collections": [
     {
       "id": "foundations",
       "title": "Foundations",
-      "description": "Start with the mental model and the smallest useful practice."
+      "description": "Start with the mental model and the smallest useful practice.",
+      "order": 1,
+      "sourceLabel": "View source",
+      "sourceUrl": "https://github.com/ljxpython/knowledge-site-template",
+      "notice": "Examples are display-only. Run commands manually if you want to try them."
     },
     {
       "id": "practice",
       "title": "Practice",
-      "description": "Turn the ideas into repeatable work."
+      "description": "Turn the ideas into repeatable work.",
+      "order": 2,
+      "sourceLabel": "View source",
+      "sourceUrl": "https://github.com/ljxpython/knowledge-site-template"
     }
   ],
   "documents": {
     "welcome": {
       "title": "A Small System for Explaining Complex Things",
       "description": "How to structure a knowledge site so readers can learn without fighting the interface.",
-      "section": "foundations",
+      "collection": "foundations",
+      "section": "Orientation",
       "order": 1,
       "published": true,
       "resources": [
@@ -28,7 +36,8 @@
     "writing-a-lesson": {
       "title": "Write One Lesson, Not a Wall of Text",
       "description": "A practical Markdown contract for readable explanations, code, and follow-up action.",
-      "section": "practice",
+      "collection": "practice",
+      "section": "Authoring",
       "order": 2,
       "published": true
     }

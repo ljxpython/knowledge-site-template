@@ -5,12 +5,17 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DocCard from '../components/DocCard.astro';
 import CopyButton from '../components/CopyButton.astro';
-import { site } from '../lib/site';
+import { site, withBase } from '../lib/site';
 
 const docs = (await getCollection('docs', ({ data }) => data.published))
-  .sort((a, b) => a.data.order - b.data.order);
+  .sort((a, b) => a.data.collectionOrder - b.data.collectionOrder || a.data.order - b.data.order);
 
-const sections = [...new Set(docs.map((doc) => doc.data.section))];
+const collections = [...new Map(docs.map((doc) => [doc.data.collection, {
+  id: doc.data.collection,
+  title: doc.data.collectionTitle,
+  description: doc.data.collectionDescription,
+  order: doc.data.collectionOrder,
+}])).values()].sort((a, b) => a.order - b.order);
 ---
 
 <BaseLayout>
@@ -31,18 +36,22 @@ const sections = [...new Set(docs.map((doc) => doc.data.section))];
     </section>
 
     <section id="notes" class="notes">
-      {sections.map((section) => (
+      {collections.map((collection) => (
         <div class="section-block">
           <div class="section-heading">
             <div>
               <p class="section-label">Collection</p>
-              <h2>{section}</h2>
+              <h2><a class="collection-link" href={withBase(`/collections/${collection.id}/`)}>{collection.title}</a></h2>
+              <p>{collection.description}</p>
             </div>
-            <span>{docs.filter((doc) => doc.data.section === section).length} notes</span>
+            <a class="collection-count" href={withBase(`/collections/${collection.id}/`)}>
+              {docs.filter((doc) => doc.data.collection === collection.id).length} notes
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
           <div class="card-grid">
-            {docs.filter((doc) => doc.data.section === section).map((doc) => (
-              <DocCard id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
+            {docs.filter((doc) => doc.data.collection === collection.id).map((doc) => (
+              <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
             ))}
           </div>
         </div>

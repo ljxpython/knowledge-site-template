@@ -4,16 +4,39 @@ import { validateManifest } from './prep-content.mjs';
 
 test('accepts complete document metadata', () => {
   assert.doesNotThrow(() => validateManifest({
-    sections: [{ id: 'notes' }],
-    documents: {},
+    collections: [{ id: 'notes', title: 'Notes', description: 'Example notes.', order: 1 }],
+    documents: {
+      welcome: {
+        collection: 'notes',
+        title: 'Welcome',
+        description: 'A valid note.',
+        order: 1,
+        published: true,
+      },
+    },
   }));
 });
 
 test('rejects incomplete document metadata', () => {
   assert.throws(() => validateManifest({
-    sections: [{ id: 'notes' }],
+    collections: [{ id: 'notes', title: 'Notes', description: 'Example notes.', order: 1 }],
     documents: {
       broken: { title: 'Missing required fields' },
     },
-  }), /requires title/);
+  }), /requires collection/);
+});
+
+test('rejects documents in unknown collections', () => {
+  assert.throws(() => validateManifest({
+    collections: [{ id: 'notes', title: 'Notes', description: 'Example notes.', order: 1 }],
+    documents: {
+      welcome: {
+        collection: 'missing',
+        title: 'Welcome',
+        description: 'A valid note.',
+        order: 1,
+        published: true,
+      },
+    },
+  }), /unknown collection/);
 });

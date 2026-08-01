@@ -10,7 +10,7 @@ This repository is configured as a GitHub Template Repository. Use **Use this te
 
 ```text
 site.config.ts          Site name, author, URLs, base path, links
-content.manifest.json  Section order and document metadata
+content.manifest.json  Collection order and document metadata
 content/*.md            Markdown lesson bodies
 public/imgs/            Images referenced as /imgs/file.png
 public/pdfs/            Optional PDFs referenced as /pdfs/file.pdf
@@ -43,13 +43,14 @@ npm run preview
 3. Set `published` to `true`.
 4. Run `npm run dev`.
 
-The manifest requires `title`, `description`, `section`, integer `order`, and boolean `published`. The build rejects invalid or unknown sections.
+The manifest requires each document to declare `collection`, `title`, `description`, integer `order`, and boolean `published`. `section` is optional and is used as a label inside the collection. The build rejects invalid or unknown collections.
 
 ```json
 {
+  "collection": "foundations",
   "title": "My lesson",
   "description": "What the reader will learn.",
-  "section": "foundations",
+  "section": "Basics",
   "order": 3,
   "published": true
 }

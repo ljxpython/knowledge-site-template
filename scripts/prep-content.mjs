@@ -12,17 +12,30 @@ export function loadManifest() {
 }
 
 export function validateManifest(manifest) {
-  if (!Array.isArray(manifest.sections) || manifest.sections.length === 0) {
-    throw new Error('content.manifest.json requires a non-empty sections array.');
+  if (!Array.isArray(manifest.collections) || manifest.collections.length === 0) {
+    throw new Error('content.manifest.json requires a non-empty collections array.');
   }
 
-  const sections = new Set(manifest.sections.map((section) => section.id));
-  for (const [id, doc] of Object.entries(manifest.documents ?? {})) {
-    if (!doc.title || !doc.description || !doc.section || !Number.isInteger(doc.order) || typeof doc.published !== 'boolean') {
-      throw new Error(`Document "${id}" requires title, description, section, integer order, and boolean published.`);
+  const collections = new Map();
+  for (const collection of manifest.collections) {
+    if (!collection.id || !collection.title || !collection.description || !Number.isInteger(collection.order)) {
+      throw new Error('Each collection requires id, title, description, and integer order.');
     }
-    if (!sections.has(doc.section)) {
-      throw new Error(`Document "${id}" references unknown section "${doc.section}".`);
+    if (collection.sourceUrl && !URL.canParse(collection.sourceUrl)) {
+      throw new Error(`Collection "${collection.id}" has an invalid sourceUrl.`);
+    }
+    collections.set(collection.id, collection);
+  }
+
+  for (const [id, doc] of Object.entries(manifest.documents ?? {})) {
+    if (!doc.collection || !doc.title || !doc.description || !Number.isInteger(doc.order) || typeof doc.published !== 'boolean') {
+      throw new Error(`Document "${id}" requires collection, title, description, integer order, and boolean published.`);
+    }
+    if (!collections.has(doc.collection)) {
+      throw new Error(`Document "${id}" references unknown collection "${doc.collection}".`);
+    }
+    if (doc.source && !URL.canParse(doc.source)) {
+      throw new Error(`Document "${id}" has an invalid source URL.`);
     }
     if (!existsSync(resolve(sourceDir, `${id}.md`))) {
       throw new Error(`Document "${id}" is listed in the manifest but content/${id}.md is missing.`);
@@ -46,15 +59,24 @@ export function prepareContent() {
   mkdirSync(outputDir, { recursive: true });
 
   for (const [id, doc] of Object.entries(manifest.documents)) {
+    const collection = manifest.collections.find((item) => item.id === doc.collection);
     const body = readFileSync(resolve(sourceDir, `${id}.md`), 'utf8')
       .replace(/^#\s+.+\r?\n*/, '');
     const frontmatter = [
       '---',
+      `collection: ${yamlString(collection.id)}`,
+      `collectionTitle: ${yamlString(collection.title)}`,
+      `collectionDescription: ${yamlString(collection.description)}`,
+      `collectionOrder: ${collection.order}`,
+      ...(collection.notice ? [`collectionNotice: ${yamlString(collection.notice)}`] : []),
+      ...(collection.sourceLabel ? [`collectionSourceLabel: ${yamlString(collection.sourceLabel)}`] : []),
+      ...(collection.sourceUrl ? [`collectionSourceUrl: ${yamlString(collection.sourceUrl)}`] : []),
       `title: ${yamlString(doc.title)}`,
       `description: ${yamlString(doc.description)}`,
-      `section: ${yamlString(doc.section)}`,
+      ...(doc.section ? [`section: ${yamlString(doc.section)}`] : []),
       `order: ${doc.order}`,
       `published: ${doc.published}`,
+      ...(doc.source ? [`source: ${yamlString(doc.source)}`] : []),
       `resources: ${JSON.stringify(doc.resources ?? [])}`,
       '---',
       '',

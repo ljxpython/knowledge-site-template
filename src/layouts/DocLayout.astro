@@ -15,18 +15,25 @@ interface Resource {
 
 interface Props {
   id: string;
+  collection: string;
+  collectionTitle: string;
+  collectionNotice?: string;
+  collectionSourceLabel?: string;
+  collectionSourceUrl?: string;
   title: string;
   description: string;
-  section: string;
+  section?: string;
   order: number;
+  source?: string;
   resources: Resource[];
   headings: Array<{ depth: number; slug: string; text: string }>;
-  prev: { id: string; title: string; section: string } | null;
-  next: { id: string; title: string; section: string } | null;
+  prev: { collection: string; id: string; title: string; section?: string } | null;
+  next: { collection: string; id: string; title: string; section?: string } | null;
 }
 
-const { id, title, description, section, order, resources, headings, prev, next } = Astro.props;
-const editUrl = `${site.repositoryUrl}/blob/main/content/${id}.md`;
+const { id, collection, collectionTitle, collectionNotice, collectionSourceLabel, collectionSourceUrl, title, description, section, order, source, resources, headings, prev, next } = Astro.props;
+const sourceUrl = source ?? collectionSourceUrl ?? `${site.repositoryUrl}/blob/main/content/${id}.md`;
+const sourceLabel = collectionSourceLabel ?? site.navigation.sourceLabel;
 ---
 
 <BaseLayout title={`${title} | ${site.title}`} description={description}>
@@ -36,14 +43,15 @@ const editUrl = `${site.repositoryUrl}/blob/main/content/${id}.md`;
       <ContentsRail headings={headings} />
       <header class="doc-header">
         <div class="eyebrow">
-          <span>{section}</span>
+          <span>{section ?? collectionTitle}</span>
           <span>Note {String(order).padStart(2, '0')}</span>
         </div>
         <h1>{title}</h1>
         <p>{description}</p>
+        {collectionNotice && <p class="notice">{collectionNotice}</p>}
         <div class="doc-meta">
           <a href={withBase('/')} class="quiet-link">All notes</a>
-          <a href={editUrl} target="_blank" rel="noopener" class="quiet-link">{site.navigation.sourceLabel}</a>
+          <a href={sourceUrl} target="_blank" rel="noopener" class="quiet-link">{sourceLabel}</a>
         </div>
       </header>
 
