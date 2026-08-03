@@ -14,6 +14,7 @@ content.manifest.json  Collection order and document metadata
 content/*.md            Markdown lesson bodies
 public/imgs/            Images referenced as /imgs/file.png
 public/pdfs/            Optional PDFs referenced as /pdfs/file.pdf
+public/examples/        Standalone UTF-8 source files published with the site
 .codex/skills/markdown-to-knowledge-site/
                         Repo-local Codex skill source for Markdown-to-site imports
 ```
@@ -56,6 +57,18 @@ The manifest requires each document to declare `collection`, `title`, `descripti
 }
 ```
 
+Collections are flat by default. For a large course, add `sectionMode: "collapsible"` to its collection entry. The homepage then keeps its documents collapsed, the collection page groups documents by `section`, and previous/next links stay inside each section.
+
+```json
+{
+  "id": "foundations",
+  "title": "Foundations",
+  "description": "Start here.",
+  "order": 1,
+  "sectionMode": "collapsible"
+}
+```
+
 ## Assets
 
 Use absolute public paths in Markdown:
@@ -80,7 +93,16 @@ For standalone sample files, add a `resources` entry in `content.manifest.json` 
 }
 ```
 
-For files you want to serve from the site itself, put them under `public/` and link them with an absolute path.
+For a site-local source file, put it under `public/` and use the configured `site.base` in its resource URL. Whitelisted code files (`.py`, `.js`, `.mjs`, `.ts`, `.tsx`, `.jsx`) appear as UTF-8, collapsible code blocks; other local files remain links.
+
+```json
+{
+  "label": "Example: utf8-example.py",
+  "url": "/knowledge-site-template/examples/utf8-example.py"
+}
+```
+
+Run `npm test` after adding a local resource. The content preparation step rejects missing files, base-mismatched URLs, and path traversal.
 
 ## GitHub Pages
 

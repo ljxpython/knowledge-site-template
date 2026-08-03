@@ -5,6 +5,7 @@
       "title": "Foundations",
       "description": "Start with the mental model and the smallest useful practice.",
       "order": 1,
+      "sectionMode": "collapsible",
       "sourceLabel": "View source",
       "sourceUrl": "https://github.com/ljxpython/knowledge-site-template",
       "notice": "Examples are display-only. Run commands manually if you want to try them."
@@ -30,8 +31,36 @@
         {
           "label": "Project repository",
           "url": "https://github.com/ljxpython/knowledge-site-template"
+        },
+        {
+          "label": "Local UTF-8 Python example",
+          "url": "/knowledge-site-template/examples/utf8-example.py"
         }
       ]
+    },
+    "learning-sequence": {
+      "title": "Build a Learning Sequence",
+      "description": "Keep one topic focused, then let the next lesson extend it.",
+      "collection": "foundations",
+      "section": "Orientation",
+      "order": 2,
+      "published": true
+    },
+    "framing-a-course": {
+      "title": "Frame a Course Around Decisions",
+      "description": "Use sections to separate questions that should not compete for attention.",
+      "collection": "foundations",
+      "section": "Practice",
+      "order": 3,
+      "published": true
+    },
+    "repeatable-practice": {
+      "title": "Start With One Repeatable Practice",
+      "description": "A small routine makes an idea easier to revisit and improve.",
+      "collection": "practice",
+      "section": "Authoring",
+      "order": 1,
+      "published": true
     },
     "writing-a-lesson": {
       "title": "Write One Lesson, Not a Wall of Text",

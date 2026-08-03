@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DocCard from '../components/DocCard.astro';
+import SectionGroups from '../components/SectionGroups.astro';
 import CopyButton from '../components/CopyButton.astro';
 import { site, withBase } from '../lib/site';
 
@@ -15,6 +16,7 @@ const collections = [...new Map(docs.map((doc) => [doc.data.collection, {
   title: doc.data.collectionTitle,
   description: doc.data.collectionDescription,
   order: doc.data.collectionOrder,
+  sectionMode: doc.data.collectionSectionMode,
 }])).values()].sort((a, b) => a.order - b.order);
 ---
 
@@ -49,11 +51,18 @@ const collections = [...new Map(docs.map((doc) => [doc.data.collection, {
               <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <div class="card-grid">
-            {docs.filter((doc) => doc.data.collection === collection.id).map((doc) => (
-              <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
-            ))}
-          </div>
+          {collection.sectionMode === 'collapsible' ? (
+            <details class="collection-documents">
+              <summary>Show notes</summary>
+              <SectionGroups docs={docs.filter((doc) => doc.data.collection === collection.id)} />
+            </details>
+          ) : (
+            <div class="card-grid">
+              {docs.filter((doc) => doc.data.collection === collection.id).map((doc) => (
+                <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </section>

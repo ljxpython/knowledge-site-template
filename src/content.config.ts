@@ -1,10 +1,13 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { site } from './lib/site';
+
+const siteBase = site.base.replace(/\/$/, '');
 
 const resources = z.array(z.object({
   label: z.string(),
-  url: z.string().url(),
+  url: z.string().refine((url) => URL.canParse(url) || url.startsWith(`${siteBase}/`), 'Expected an external URL or site-local resource path.'),
 })).default([]);
 
 const docs = defineCollection({
@@ -14,6 +17,7 @@ const docs = defineCollection({
     collectionTitle: z.string().min(1),
     collectionDescription: z.string().min(1),
     collectionOrder: z.number().int().nonnegative(),
+    collectionSectionMode: z.enum(['flat', 'collapsible']).default('flat'),
     collectionNotice: z.string().min(1).optional(),
     collectionSourceLabel: z.string().min(1).optional(),
     collectionSourceUrl: z.string().url().optional(),
