@@ -20,8 +20,8 @@ const groups = [...docs.reduce((sections, doc) => {
   {groups.map(([title, sectionDocs]) => (
     <details class="section-group">
       <summary>
-        <span class="group-heading"><span class="section-label">Section</span><span class="group-title">{title}</span></span>
-        <span class="disclosure-toggle">{sectionDocs.length} notes</span>
+        <span class="group-heading"><span class="section-label">小节</span><span class="group-title">{title}</span></span>
+        <span class="disclosure-toggle">{sectionDocs.length} 篇</span>
       </summary>
       <div class="card-grid">
         {sectionDocs.map((doc) => (

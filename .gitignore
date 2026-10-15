@@ -4,3 +4,4 @@ dist/
 src/content/docs/
 .playwright-cli/
 .DS_Store
+/public/pagefind/

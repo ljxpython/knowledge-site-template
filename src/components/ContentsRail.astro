@@ -10,7 +10,7 @@ const items = headings.filter((heading) => heading.depth === 2 || heading.depth 
 {items.length > 0 && (
   <>
     <details class="toc-mobile">
-      <summary>On this page</summary>
+      <summary>本页目录</summary>
       <ul>
         {items.map((item) => (
           <li class:list={{ nested: item.depth === 3 }}>
@@ -19,8 +19,8 @@ const items = headings.filter((heading) => heading.depth === 2 || heading.depth 
         ))}
       </ul>
     </details>
-    <nav class="toc-desktop" aria-label="On this page">
-      <p>On this page</p>
+    <nav class="toc-desktop" aria-label="本页目录">
+      <p>本页目录</p>
       <ul>
         {items.map((item) => (
           <li class:list={{ nested: item.depth === 3 }}>

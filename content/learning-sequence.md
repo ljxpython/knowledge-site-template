@@ -1,4 +1,11 @@
-# Build a Learning Sequence
+---
+title: "Build a Learning Sequence"
+description: "Keep one topic focused, then let the next lesson extend it."
+collection: "foundations"
+section: "Orientation"
+order: 2
+published: true
+---
 
 ## Keep one question in view
 

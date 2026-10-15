@@ -1,4 +1,11 @@
-# Write One Lesson, Not a Wall of Text
+---
+title: "Write One Lesson, Not a Wall of Text"
+description: "A practical Markdown contract for readable explanations, code, and follow-up action."
+collection: "practice"
+section: "Authoring"
+order: 2
+published: true
+---
 
 ## One lesson, one outcome
 

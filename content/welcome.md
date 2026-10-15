@@ -1,4 +1,16 @@
-# A Small System for Explaining Complex Things
+---
+title: "A Small System for Explaining Complex Things"
+description: "How to structure a knowledge site so readers can learn without fighting the interface."
+collection: "foundations"
+section: "Orientation"
+order: 1
+published: true
+resources:
+  - label: "Project repository"
+    url: "https://github.com/ljxpython/knowledge-site-template"
+  - label: "Local UTF-8 Python example"
+    url: "/knowledge-site-template/examples/utf8-example.py"
+---
 
 ## The promise
 
@@ -8,7 +20,7 @@ A knowledge site works when the author can focus on the explanation and the read
 
 ## The input contract
 
-Each lesson is a Markdown file. Its title, section, order, and publication state live in `content.manifest.json`. The build merges that metadata into generated content collections.
+Each lesson is a Markdown file. Its title, section, order, and publication state live directly in its Frontmatter. Adding a lesson requires no configuration outside the file.
 
 ```text
 content/
@@ -16,7 +28,7 @@ content/
   writing-a-lesson.md
 ```
 
-This keeps the page code clean. Adding a lesson does not require editing an Astro component.
+This keeps authoring friction zero. Adding a lesson does not require editing an Astro component.
 
 ## The reader's path
 
@@ -24,5 +36,4 @@ This keeps the page code clean. Adding a lesson does not require editing an Astr
 2. Open one focused lesson.
 3. Use the contents rail for long pages.
 4. Continue with the next lesson.
-
-That is enough for a first version. Search, accounts, and a CMS are separate problems.
+5. Use fast static search anytime with `Ctrl + K`.

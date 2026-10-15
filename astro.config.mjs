@@ -6,6 +6,9 @@ import site from './site.config.ts';
 export default defineConfig({
   site: site.url,
   base: site.base,
+  devToolbar: {
+    enabled: false,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

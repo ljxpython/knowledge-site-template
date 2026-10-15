@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import SearchModal from './SearchModal.astro';
 import { site, withBase } from '../lib/site';
 ---
 
@@ -10,6 +11,7 @@ import { site, withBase } from '../lib/site';
       <span>{site.navigation.label}</span>
     </a>
     <div class="nav-actions">
+      <SearchModal />
       <a href={site.links.github} target="_blank" rel="noopener" class="quiet-link">GitHub</a>
       <ThemeToggle />
     </div>

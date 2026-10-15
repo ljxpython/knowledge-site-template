@@ -178,3 +178,103 @@ button { font: inherit; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+/* Pagefind Search UI Overrides */
+:root {
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--ink);
+  --pagefind-ui-background: var(--paper);
+  --pagefind-ui-border: var(--line);
+  --pagefind-ui-tag: var(--paper-warm);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-font: var(--font-sans);
+}
+
+.pagefind-ui .pagefind-ui__search-input {
+  background: var(--paper-warm) !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  border-radius: 6px !important;
+  font-size: 15px !important;
+}
+
+.pagefind-ui .pagefind-ui__search-input:focus {
+  border-color: var(--accent) !important;
+  outline: 2px solid var(--accent-soft) !important;
+}
+
+.pagefind-ui .pagefind-ui__result-link {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+.pagefind-ui .pagefind-ui__result-excerpt mark {
+  background: var(--accent-soft) !important;
+  color: var(--ink) !important;
+  border-radius: 2px !important;
+  padding: 0 2px !important;
+}
+
+/* Callouts / Admonitions */
+.markdown-alert {
+  margin: 24px 0;
+  padding: 14px 18px;
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 8px 8px 0;
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  color: var(--accent);
+}
+
+.markdown-alert-note {
+  border-left-color: #3b82f6;
+  background: rgb(59 130 246 / 0.08);
+}
+.markdown-alert-note .markdown-alert-title {
+  color: #2563eb;
+}
+
+.markdown-alert-tip {
+  border-left-color: #10b981;
+  background: rgb(16 185 129 / 0.08);
+}
+.markdown-alert-tip .markdown-alert-title {
+  color: #059669;
+}
+
+.markdown-alert-warning {
+  border-left-color: #f59e0b;
+  background: rgb(245 158 11 / 0.08);
+}
+.markdown-alert-warning .markdown-alert-title {
+  color: #d97706;
+}
+
+.markdown-alert-important {
+  border-left-color: #8b5cf6;
+  background: rgb(139 92 246 / 0.08);
+}
+.markdown-alert-important .markdown-alert-title {
+  color: #7c3aed;
+}
+
+.markdown-alert-caution {
+  border-left-color: #ef4444;
+  background: rgb(239 68 68 / 0.08);
+}
+.markdown-alert-caution .markdown-alert-title {
+  color: #dc2626;
+}
+
