@@ -31,6 +31,17 @@ export async function getStaticPaths() {
 
 const { doc, colConfig, prev, next } = Astro.props;
 const { Content, headings } = await render(doc);
+
+function getReadingStats(body = '') {
+  const clean = body.replace(/<\/?[^>]+(>|$)/g, '');
+  const cjk = (clean.match(/[\u4e00-\u9fa5]/g) || []).length;
+  const en = (clean.match(/[a-zA-Z0-9_\-]+/g) || []).length;
+  const words = cjk + en;
+  const minutes = Math.max(1, Math.ceil(cjk / 350 + en / 200));
+  return { words, minutes };
+}
+
+const stats = getReadingStats(doc.body);
 ---
 
 <DocLayout
@@ -47,6 +58,8 @@ const { Content, headings } = await render(doc);
   source={doc.data.source}
   resources={doc.data.resources}
   headings={headings}
+  words={stats.words}
+  minutes={stats.minutes}
   prev={prev ? { collection: prev.data.collection, id: prev.id, title: prev.data.title, section: prev.data.section } : null}
   next={next ? { collection: next.data.collection, id: next.id, title: next.data.title, section: next.data.section } : null}
 >
